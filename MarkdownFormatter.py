@@ -79,7 +79,7 @@ class MarkdownFormatter(Formatter):
                 val = current_dict[current_key]
                 spaces = ' ' * (line_length - len(val))
                 row = ''.join([row, start_new_col, val, spaces])
-                row = ''.join([row, end_col, end_line])
+        row = ''.join([row, end_col, end_line])
         return row
 
     def find_max_length_in_dict(self, current_dict):

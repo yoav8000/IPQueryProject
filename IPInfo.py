@@ -54,7 +54,7 @@ class IPInfo(object):
         :return: the method doesn't return anything.
         """
         location = dict.get('loc')
-        if location is not None and location.contains(','):
+        if location is not None and str(location).__contains__(','):
             loc = location.split(',')
             self._coordinate_dict['latitude'] = loc[0]
             self._coordinate_dict['longitude'] = loc[1]
