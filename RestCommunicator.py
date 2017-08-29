@@ -27,7 +27,6 @@ class RestCommunicator(object):
                 return response.content  # Received a proper answer.
             else:
                 raise InvalidIPAddress
-        # CHECK RETURN VALUE = 200 AND CHECK IF WE EXCEEDED THE AMOUNT ALLOWED
         except Exception as ex:
             raise ex
 
