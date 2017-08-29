@@ -34,27 +34,27 @@ class IPInfo(object):
         self.set_coordinate_info(parser_dict)
         self.set_organization_info(parser_dict)
 
-    def set_location_info(self, dict):
+    def set_location_info(self, location_dict):
         """
         The method is in charge of setting the information saved in the dict
         location that is related to the location into the location dictionary.
-        :param dict: the dictionary that holds the processed information.
+        :param location_dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
-        self._location_dict['country'] = dict.get('country', '')
-        self._location_dict['region'] = dict.get('region', '')
-        self._location_dict['city'] = dict.get('city', '')
+        self._location_dict['country'] = location_dict.get('country', '')
+        self._location_dict['region'] = location_dict.get('region', '')
+        self._location_dict['city'] = location_dict.get('city', '')
         self._location_dict = self.replace_empty_cells(self._location_dict)
 
-    def set_coordinate_info(self, dict):
+    def set_coordinate_info(self, coordinate_dict):
         """
         The method is in charge of setting the information saved in the dict
         location that is related to the coordinates into the location
         dictionary.
-        :param dict: the dictionary that holds the processed information.
+        :param coordinate_dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
-        location = dict.get('loc')
+        location = coordinate_dict.get('loc')
         if location is not None and str(location).__contains__(','):
             loc = location.split(',')
             self._coordinate_dict['latitude'] = loc[0]
@@ -65,16 +65,16 @@ class IPInfo(object):
             self._coordinate_dict = self.replace_empty_cells(
                 self._coordinate_dict)
 
-    def set_organization_info(self, dict):
+    def set_organization_info(self, organizations_dict):
         """
         The method is in charge of setting the information saved in the dict
         location that is related to the organization into the location
         dictionary.
-        :param dict: the dictionary that holds the processed information.
+        :param organizations_dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
         self._organization_dict['organization'] = \
-            dict.get('org', '')
+            organizations_dict.get('org', '')
         self._organization_dict = self.replace_empty_cells(
             self._organization_dict)
 

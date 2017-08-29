@@ -26,15 +26,19 @@ class MarkdownFormatter(Formatter):
         :return: The method returns a string represents the
          information about the ip address divided into tables.
         """
-        formated_info = ''
-        formated_info += self.create_table_from_dict('Location',
-                                                     self._ip_info.get_location_info())
-        formated_info += self.create_table_from_dict('Coordinates',
-                                                     self._ip_info.get_coordinate_info())
-        formated_info += '####  Organizations \n'
-        formated_info += self._ip_info.get_organization_info()[
-                             'organization'] + '\n'
-        return formated_info
+        formatted_info = ''
+        formatted_info = ''.join([formatted_info,
+                                  self.create_table_from_dict('Location',
+                                    self._ip_info.get_location_info())])
+        formatted_info = ''.join([formatted_info,
+                                  self.create_table_from_dict('Coordinates',
+                                self._ip_info.get_coordinate_info())])
+        formatted_info = ''.join([formatted_info, self.create_table_header(
+            'Organizations')])
+        formatted_info = ''.join([formatted_info,
+                                  self._ip_info.get_organization_info()[
+                                      'organization'] + '\n'])
+        return formatted_info
 
     def create_table_from_dict(self, table_header, current_dict):
         """
@@ -89,7 +93,7 @@ class MarkdownFormatter(Formatter):
         :param current_dict: The dictionary that holds the information.
         :param line_length: the length of the line.
         :param row_type: the type of the row (header or value).
-        :return:
+        :return: the method returns a string represents a row in the table.
         """
 
         start_new_col = '| '
