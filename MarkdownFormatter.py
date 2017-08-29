@@ -27,17 +27,17 @@ class MarkdownFormatter(Formatter):
          information about the ip address divided into tables.
         """
         formatted_info = ''
-        formatted_info = ''.join([formatted_info,
-                                  self.create_table_from_dict('Location',
-                                                              self._ip_info.get_location_info())])
-        formatted_info = ''.join([formatted_info,
-                                  self.create_table_from_dict('Coordinates',
-                                                              self._ip_info.get_coordinate_info())])
+        location_table = self.create_table_from_dict('Location',
+                                                     self._ip_info.get_location_info())
+        formatted_info = ''.join([formatted_info, location_table])
+        coordinate_table = self.create_table_from_dict('Coordinates',
+                                                       self._ip_info.get_coordinate_info())
+        formatted_info = ''.join([formatted_info, coordinate_table])
         formatted_info = ''.join([formatted_info, self.create_table_header(
             'Organizations')])
-        formatted_info = ''.join([formatted_info,
-                                  self._ip_info.get_organization_info()[
-                                      'organization'] + '\n'])
+        organizations_table = self._ip_info.get_organization_info()[
+                                  'organization'] + '\n'
+        formatted_info = ''.join([formatted_info, organizations_table])
         return formatted_info
 
     def create_table_from_dict(self, table_header, current_dict):
