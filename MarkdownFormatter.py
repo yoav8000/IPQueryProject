@@ -29,10 +29,10 @@ class MarkdownFormatter(Formatter):
         formatted_info = ''
         formatted_info = ''.join([formatted_info,
                                   self.create_table_from_dict('Location',
-                                    self._ip_info.get_location_info())])
+                                                              self._ip_info.get_location_info())])
         formatted_info = ''.join([formatted_info,
                                   self.create_table_from_dict('Coordinates',
-                                self._ip_info.get_coordinate_info())])
+                                                              self._ip_info.get_coordinate_info())])
         formatted_info = ''.join([formatted_info, self.create_table_header(
             'Organizations')])
         formatted_info = ''.join([formatted_info,
@@ -53,25 +53,27 @@ class MarkdownFormatter(Formatter):
         end_col = ' |'
         end_line = '\n'
         start_new_col_header = '|:'
-        table = ''.join(self.create_table_header(table_header))
-        # create a table header and join to the table.
+        current_header = self.create_table_header(table_header)
+        table = current_header
+        # create a table header and join it to the table.
 
         line_length = self.find_max_length_in_dict(current_dict)
-        table = ''.join(
-            [table, self.create_table_row(current_dict, line_length,
-                                          RowType.header)])
-        # create a table row that contains all of the header keys
+        header_row = self.create_table_row(current_dict, line_length,
+                                           RowType.header)
+        table = ''.join([table, header_row])
+        # create a table row that contains all of the header keys and adds it
+        #  to the table.
         header_length = len(current_dict)
         for i in range(header_length):
             # creates the separation between table keys and table values.
             hyphen_amount = '-' * line_length
             table = ''.join([table, start_new_col_header, hyphen_amount])
         table = ''.join([table, end_col, end_line])
-
-        table = ''.join(
-            [table, self.create_table_row(current_dict, line_length,
-                                          RowType.value)])
-        # create a table row that contains the values of the table.
+        current_row = self.create_table_row(current_dict, line_length,
+                                            RowType.value)
+        # creates a row for the values
+        table = ''.join([table, current_row])
+        # add the row to the table.
         return table
 
     def create_table_header(self, table_header):
