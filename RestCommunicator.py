@@ -2,6 +2,7 @@ import requests
 import ipaddress
 from CustomExceptions import InvalidIPAddress
 from CustomExceptions import BogonIP
+from CustomExceptions import TooManyRequests
 
 
 class RestCommunicator(object):
@@ -19,6 +20,8 @@ class RestCommunicator(object):
             if self.is_a_valid_ip_address(ip_address):  # Check if is a valid IP
                 uri = prefix + ip_address + suffix  # Assemble the uri
                 response = requests.get(uri)
+                if response.status_code == 429:  # too many requests
+                    raise TooManyRequests
                 if response.content.__contains__('bogon'):  # Is a bogon IP
                     raise BogonIP
                 return response.content  # Received a proper answer.

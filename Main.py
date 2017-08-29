@@ -14,7 +14,7 @@ def main():
             ip_address = sys.argv[1]
             h = RestCommunicator()
             prefix = 'https://ipinfo.io/'
-            suffix = '/json'    # forces the server to return a json file.
+            suffix = '/json'  # forces the server to return a json file.
             raw_info = h.send_get_request(prefix, ip_address, suffix)
             ip_info = IPInfo(JsonParser(), raw_info)
             md_formatter = MarkdownFormatter(ip_info)

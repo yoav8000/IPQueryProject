@@ -4,9 +4,10 @@ import json
 
 class JsonParser(Parser):
     """
-    The class is a concrete parser which inherits the abstract Parser
+    This class is a concrete parser which inherits the abstract Parser
     and parse an input in a json format.
     """
+
     def __init__(self):
         """
         the constructor, it calls the super class constructor.

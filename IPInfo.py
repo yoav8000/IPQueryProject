@@ -41,9 +41,12 @@ class IPInfo(object):
         :param dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
-        self._location_dict['country'] = dict.get('country', '')
-        self._location_dict['region'] = dict.get('region', '')
-        self._location_dict['city'] = dict.get('city', '')
+        self._location_dict['country'] = dict.get('country', 'No information '
+                                                             'was given')
+        self._location_dict['region'] = dict.get('region', 'No information '
+                                                           'was given')
+        self._location_dict['city'] = dict.get('city', 'No information '
+                                                       'was given')
 
     def set_coordinate_info(self, dict):
         """
@@ -59,8 +62,8 @@ class IPInfo(object):
             self._coordinate_dict['latitude'] = loc[0]
             self._coordinate_dict['longitude'] = loc[1]
         else:
-            self._coordinate_dict['latitude'] = ''
-            self._coordinate_dict['longitude'] = ''
+            self._coordinate_dict['latitude'] = 'No information was given'
+            self._coordinate_dict['longitude'] = 'No information was given'
 
     def set_organization_info(self, dict):
         """
@@ -70,7 +73,9 @@ class IPInfo(object):
         :param dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
-        self._organization_dict['organization'] = dict.get('org', '')
+        self._organization_dict['organization'] = dict.get('org',
+                                                           'No information'
+                                                           ' was given')
 
     def get_location_info(self):
         """
