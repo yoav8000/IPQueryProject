@@ -41,12 +41,10 @@ class IPInfo(object):
         :param dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
-        self._location_dict['country'] = dict.get('country', 'No information '
-                                                             'was given')
-        self._location_dict['region'] = dict.get('region', 'No information '
-                                                           'was given')
-        self._location_dict['city'] = dict.get('city', 'No information '
-                                                       'was given')
+        self._location_dict['country'] = dict.get('country', '')
+        self._location_dict['region'] = dict.get('region', '')
+        self._location_dict['city'] = dict.get('city', '')
+        self._location_dict = self.replace_empty_cells(self._location_dict)
 
     def set_coordinate_info(self, dict):
         """
@@ -62,8 +60,10 @@ class IPInfo(object):
             self._coordinate_dict['latitude'] = loc[0]
             self._coordinate_dict['longitude'] = loc[1]
         else:
-            self._coordinate_dict['latitude'] = 'No information was given'
-            self._coordinate_dict['longitude'] = 'No information was given'
+            self._coordinate_dict['latitude'] = ''
+            self._coordinate_dict['longitude'] = ''
+            self._coordinate_dict = self.replace_empty_cells(
+                self._coordinate_dict)
 
     def set_organization_info(self, dict):
         """
@@ -73,9 +73,10 @@ class IPInfo(object):
         :param dict: the dictionary that holds the processed information.
         :return: the method doesn't return anything.
         """
-        self._organization_dict['organization'] = dict.get('org',
-                                                           'No information'
-                                                           ' was given')
+        self._organization_dict['organization'] = \
+            dict.get('org', '')
+        self._organization_dict = self.replace_empty_cells(
+            self._organization_dict)
 
     def get_location_info(self):
         """
@@ -97,3 +98,15 @@ class IPInfo(object):
         :return: A copy of the organizations dictionary
         """
         return dict(self._organization_dict)
+
+    def replace_empty_cells(self, dictionary):
+        """
+        This method replace all empty cells in dictionary into 'No
+        information was given' string
+        :param dictionary: The dictionary
+        :return: The method returns nothing.
+        """
+        for k in dictionary:
+            if dictionary[k] == '':
+                dictionary[k] = 'No information was given'
+        return dictionary
