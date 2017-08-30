@@ -37,6 +37,7 @@ class RestCommunicator(object):
             sys.exit(1)
         except TooManyRequests:
             print "Too many requests were sent to the server. "
+            sys.exit(1)
         except ConnectionError:
             print "A connection error occurred. "
             sys.exit(1)

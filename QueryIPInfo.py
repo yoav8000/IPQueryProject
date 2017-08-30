@@ -37,7 +37,8 @@ def query_ip():
             formatted_info = md_formatter.form()
             write_markdown(formatted_info, ip_address)
         except:
-            pass
+            print "Encountered an unexpected Error."
+            sys.exit(1)
 
 
 if __name__ == '__main__':
