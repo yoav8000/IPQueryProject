@@ -40,8 +40,8 @@ class RestCommunicator(object):
         except ConnectionError:
             print "A connection error occurred. "
             sys.exit(1)
-        except Exception:
-            print "An error occurred "
+        except:
+            print "Encountered an unexpected Error."
             sys.exit(1)
 
     def is_a_valid_ip_address(self, ip_address):
