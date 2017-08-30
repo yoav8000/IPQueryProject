@@ -1,5 +1,12 @@
+
+Usage:
+•	Through CLI: QueryIPInfo.py IP-ADDRESS (e.g. 8.8.8.8)
+
+Dependencies:
+•	This script requires pip installation of: requests, ipaddress
+
 Assumptions:
-•	If partial information returns from the server, we will not throw an exception but rather present the information that was given and set in missing information cells  the value “No information was given” (can happen due to IPV6).
+•	If partial information returns from the server, we will not throw an exception but rather present the information that was given and set in missing information cells the value “No information was given” (can happen due to IPV6).
 	  
 •	By “returns the above table in markdown” instruction on the exercise I assumed we should write it into a file with a “.md” suffix so I did that with a file called “IP Information.md”.
 

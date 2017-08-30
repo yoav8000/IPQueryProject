@@ -5,7 +5,7 @@ from MarkdownFormatter import *
 import sys
 
 PREFIX = 'http://ipinfo.io/'
-SUFFIX = '/json'  # forces the server to return a json file.
+SUFFIX = '/json'  # forces the server to return a json response.
 
 
 def write_markdown(formatted_info, ip):
@@ -20,7 +20,7 @@ def write_markdown(formatted_info, ip):
 
 def query_ip():
     if len(sys.argv) != 2:
-        print "Usage: QueryIPInfo.py IP-ADDRESS (e.g 8.8.8.8)"
+        print "Usage: QueryIPInfo.py IP-ADDRESS (e.g. 8.8.8.8)"
         sys.exit(1)
     else:
         ip_address = sys.argv[1]

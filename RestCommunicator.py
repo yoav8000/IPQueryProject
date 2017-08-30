@@ -40,7 +40,7 @@ class RestCommunicator(object):
         except ConnectionError:
             print "A connection error occurred. "
             sys.exit(1)
-        except Exception as ex:
+        except Exception:
             print "An error occurred "
             sys.exit(1)
 
@@ -51,5 +51,5 @@ class RestCommunicator(object):
             unicode_ip_add = unicode(ip_address)
             ipaddress.ip_network(unicode_ip_add)
             return True
-        except ValueError as ex:
+        except ValueError:
             return False

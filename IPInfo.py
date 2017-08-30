@@ -38,7 +38,8 @@ class IPInfo(object):
         """
         The method is in charge of setting the information saved in the dict
         location that is related to the location into the location dictionary.
-        :param location_dict: the dictionary that holds the processed information.
+        :param location_dict: the dictionary that holds the
+         processed information.
         :return: the method doesn't return anything.
         """
         self._location_dict['country'] = location_dict.get('country', '')
@@ -51,7 +52,8 @@ class IPInfo(object):
         The method is in charge of setting the information saved in the dict
         location that is related to the coordinates into the location
         dictionary.
-        :param coordinate_dict: the dictionary that holds the processed information.
+        :param coordinate_dict: the dictionary that holds the processed
+         information.
         :return: the method doesn't return anything.
         """
         location = coordinate_dict.get('loc')
@@ -70,7 +72,8 @@ class IPInfo(object):
         The method is in charge of setting the information saved in the dict
         location that is related to the organization into the location
         dictionary.
-        :param organizations_dict: the dictionary that holds the processed information.
+        :param organizations_dict: the dictionary that holds the processed
+        information.
         :return: the method doesn't return anything.
         """
         self._organization_dict['organization'] = \
