@@ -1,6 +1,8 @@
 class BogonIP(Exception):
     """
-    An exception that is being raised when a bogon IP address is received.
+    An exception that is being raised when a bogon IP address is received,
+    Meaning, that was in a valid IP address format thought it was a fake IP
+    address .
     """
     pass
 

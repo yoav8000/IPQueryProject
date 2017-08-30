@@ -20,24 +20,34 @@ class MarkdownFormatter(Formatter):
     def form(self):
         """
         The method is in charge of formatting the ip information in a markdown
-        table format, it creates a table for the location, the coordinates
-        and the organization of the ip address and concat all of them into a
+        table format, It creates a table for the location, the coordinates
+        and the organization of the IP address and concat all of them into a
         long string which is in a markdown format.
         :return: The method returns a string represents the
-         information about the ip address divided into tables.
+         information about the IP address divided into tables.
         """
         formatted_info = ''
+
+        # Create a table out of the location dictionary.
         location_table = self.create_table_from_dict('Location',
-                                                     self._ip_info.get_location_info())
+                                         self._ip_info.get_location_info())
+
+        # Concat the location table.
+
         formatted_info = ''.join([formatted_info, location_table])
+
+        # Create a table out of the coordinate dictionary
         coordinate_table = self.create_table_from_dict('Coordinates',
-                                                       self._ip_info.get_coordinate_info())
+                                         self._ip_info.get_coordinate_info())
+
+        # Concat the coordinate table.
         formatted_info = ''.join([formatted_info, coordinate_table])
+
         formatted_info = ''.join([formatted_info, self.create_table_header(
             'Organizations')])
-        organizations_table = self._ip_info.get_organization_info()[
-                                  'organization'] + '\n'
-        formatted_info = ''.join([formatted_info, organizations_table])
+        organizations_info = self._ip_info.get_organization_info()[
+                                 'organization'] + '\n'
+        formatted_info = ''.join([formatted_info, organizations_info])
         return formatted_info
 
     def create_table_from_dict(self, table_header, current_dict):
@@ -58,14 +68,17 @@ class MarkdownFormatter(Formatter):
         # create a table header and join it to the table.
 
         line_length = self.find_max_length_in_dict(current_dict)
+        # create a table row that contains all of the header keys and adds it
+        #  to the table.
+
         header_row = self.create_table_row(current_dict, line_length,
                                            RowType.header)
         table = ''.join([table, header_row])
-        # create a table row that contains all of the header keys and adds it
-        #  to the table.
+
+        # creates the separation between table keys and table values.
+
         header_length = len(current_dict)
         for i in range(header_length):
-            # creates the separation between table keys and table values.
             hyphen_amount = '-' * line_length
             table = ''.join([table, start_new_col_header, hyphen_amount])
         table = ''.join([table, end_col, end_line])

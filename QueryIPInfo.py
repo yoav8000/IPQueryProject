@@ -9,9 +9,13 @@ SUFFIX = '/json'  # forces the server to return a json file.
 
 
 def write_markdown(formatted_info, ip):
-    markdown_file = open('{}_information.md'.format(ip), "w")
-    markdown_file.write(formatted_info)
-    markdown_file.close()
+    try:
+        markdown_file = open('ip_information.md'.format(ip), "w")
+        markdown_file.write(formatted_info)
+        markdown_file.close()
+    except Exception:
+        print "Encountered and error in opening the file or writing to it."
+        sys.exit(1)
 
 
 def query_ip():

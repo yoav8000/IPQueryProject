@@ -30,18 +30,18 @@ class RestCommunicator(object):
                 raise InvalidIPAddress
                 # exceptions handling
         except BogonIP:
-            print "The ip address received was a bogon IP."
+            print "The ip address received was a bogon IP address. "
             sys.exit(1)
         except InvalidIPAddress:
             print "The ip address received was Invalid. "
             sys.exit(1)
         except TooManyRequests:
-            print "Too many requests were sent to the server."
+            print "Too many requests were sent to the server. "
         except ConnectionError:
-            print "A connection error occurred."
+            print "A connection error occurred. "
             sys.exit(1)
         except Exception as ex:
-            print "An error occurred"
+            print "An error occurred "
             sys.exit(1)
 
     def is_a_valid_ip_address(self, ip_address):
