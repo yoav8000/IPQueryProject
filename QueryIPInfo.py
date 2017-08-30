@@ -3,6 +3,7 @@ from JsonParser import *
 from IPInfo import *
 from MarkdownFormatter import *
 import sys
+import os
 
 PREFIX = 'http://ipinfo.io/'
 SUFFIX = '/json'  # forces the server to return a json response.
@@ -10,8 +11,10 @@ SUFFIX = '/json'  # forces the server to return a json response.
 
 def write_markdown(formatted_info, ip):
     try:
-        markdown_file = open('ip_information.md'.format(ip), "w")
+        markdown_file = open('ip_information.md', "w")
+        path = os.path.abspath('ip_information.md')
         markdown_file.write(formatted_info)
+        print "File was created successfully in: " + path
         markdown_file.close()
     except IOError:
         print "Encountered and Error in opening the file or writing to it."
