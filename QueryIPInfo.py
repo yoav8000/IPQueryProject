@@ -13,8 +13,10 @@ def write_markdown(formatted_info, ip):
         markdown_file = open('ip_information.md'.format(ip), "w")
         markdown_file.write(formatted_info)
         markdown_file.close()
-    except Exception:
-        print "Encountered and error in opening the file or writing to it."
+    except IOError:
+        print "Encountered and Error in opening the file or writing to it."
+    except:
+        print "Encountered an unexpected Error."
         sys.exit(1)
 
 

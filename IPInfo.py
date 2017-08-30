@@ -64,8 +64,7 @@ class IPInfo(object):
         else:
             self._coordinate_dict['latitude'] = ''
             self._coordinate_dict['longitude'] = ''
-            self._coordinate_dict = self.replace_empty_cells(
-                self._coordinate_dict)
+        self._coordinate_dict = self.replace_empty_cells(self._coordinate_dict)
 
     def set_organization_info(self, organizations_dict):
         """
