@@ -28,13 +28,16 @@ def query_ip():
         print "Usage: QueryIPInfo.py IP-ADDRESS (e.g. 8.8.8.8)"
         sys.exit(1)
     else:
-        ip_address = sys.argv[1]
-        communicator = RestCommunicator()
-        raw_info = communicator.send_get_request(PREFIX, ip_address, SUFFIX)
-        ip_info = IPInfo(JsonParser(), raw_info)
-        md_formatter = MarkdownFormatter(ip_info)
-        formatted_info = md_formatter.form()
-        write_markdown(formatted_info, ip_address)
+        try:
+            ip_address = sys.argv[1]
+            communicator = RestCommunicator()
+            raw_info = communicator.send_get_request(PREFIX, ip_address, SUFFIX)
+            ip_info = IPInfo(JsonParser(), raw_info)
+            md_formatter = MarkdownFormatter(ip_info)
+            formatted_info = md_formatter.form()
+            write_markdown(formatted_info, ip_address)
+        except:
+            pass
 
 
 if __name__ == '__main__':
